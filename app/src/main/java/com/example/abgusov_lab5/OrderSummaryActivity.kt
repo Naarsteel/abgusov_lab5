@@ -1,6 +1,7 @@
 package com.example.abgusov_lab5
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -10,12 +11,13 @@ class OrderSummaryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_order_summary)
 
         val totalPrice = intent.getIntExtra("TOTAL_PRICE", 0)
+
         val orderSummaryTextView = findViewById<TextView>(R.id.orderSummaryTextView)
+
         orderSummaryTextView.text = "Сумма заказа = $totalPrice руб."
 
-        window.setLayout(
-            android.view.ViewGroup.LayoutParams.MATCH_PARENT,
-            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-        )
+        findViewById<Button>(R.id.closeButton).setOnClickListener {
+            finish()
+        }
     }
 }

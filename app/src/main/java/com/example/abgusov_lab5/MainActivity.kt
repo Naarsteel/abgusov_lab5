@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -19,44 +18,41 @@ class MainActivity : AppCompatActivity() {
 
         val calculateButton = findViewById<Button>(R.id.calculateButton)
         val pageCountEditText = findViewById<EditText>(R.id.pageCountEditText)
-        val a4RadioButton = findViewById<RadioButton>(R.id.a4RadioButton)
-        val a3RadioButton = findViewById<RadioButton>(R.id.a3RadioButton)
-        val a1RadioButton = findViewById<RadioButton>(R.id.a1RadioButton)
+        val paperFormatGroup = findViewById<android.widget.RadioGroup>(R.id.paperFormatGroup)
 
         calculateButton.setOnClickListener {
             val pageCountStr = pageCountEditText.text.toString()
+
             if (pageCountStr.isEmpty()) {
                 Toast.makeText(this, "Введите количество страниц", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val pageCount = pageCountStr.toInt()
+            val pageCount = pageCountStr.toIntOrNull() ?: 0
             if (pageCount <= 0) {
                 Toast.makeText(this, "Количество страниц должно быть больше 0", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val selectedFormat = when {
-                a4RadioButton.isChecked -> "A4"
-                a3RadioButton.isChecked -> "A3"
-                a1RadioButton.isChecked -> "A1"
-                else -> {
-                    Toast.makeText(this, "Выберите формат листа", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
+            val selectedId = paperFormatGroup.checkedRadioButtonId
+            if (selectedId == -1) {
+                Toast.makeText(this, "Выберите формат листа", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
-            val pricePerPage = when (selectedFormat) {
-                "A4" -> a4Price
-                "A3" -> a3Price
-                "A1" -> a1Price
+            val pricePerPage = when (selectedId) {
+                R.id.a4RadioButton -> a4Price
+                R.id.a3RadioButton -> a3Price
+                R.id.a1RadioButton -> a1Price
                 else -> 0
             }
 
             val totalPrice = pageCount * pricePerPage
 
-            val intent = Intent(this, OrderSummaryActivity::class.java)
-            intent.putExtra("TOTAL_PRICE", totalPrice)
+            val intent = Intent(this, OrderSummaryActivity::class.java).apply {
+                putExtra("TOTAL_PRICE", totalPrice)
+                println("Передаваемая сумма: $totalPrice")
+            }
             startActivity(intent)
         }
     }

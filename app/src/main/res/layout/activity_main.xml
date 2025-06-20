@@ -34,68 +34,26 @@
         android:layout_marginTop="16dp"
         android:orientation="vertical">
 
-        <!-- Формат A4 -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <RadioButton
+            android:id="@+id/a4RadioButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="A4 - 10 руб./стр."
+            android:textSize="16sp" />
 
-            <RadioButton
-                android:id="@+id/a4RadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A4"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="10 руб./стр."
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Формат A3 -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <RadioButton
+            android:id="@+id/a3RadioButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="A3 - 30 руб./стр."
+            android:textSize="16sp" />
 
-            <RadioButton
-                android:id="@+id/a3RadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A3"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="30 руб./стр."
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Формат A1 -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <RadioButton
+            android:id="@+id/a1RadioButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/a1RadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="A1"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="100 руб./стр."
-                android:textSize="16sp" />
-        </LinearLayout>
+            android:text="A1 - 100 руб./стр."
+            android:textSize="16sp" />
     </RadioGroup>
 
     <Button
